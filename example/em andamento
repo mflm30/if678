@@ -1,4 +1,5 @@
 import socket
+lista = {}
 tcp = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 host = 'localhost'
 port = 6000
@@ -15,6 +16,9 @@ conn, addr = tcp.accept()
 
 data = conn.recv(1024)
 hostcliente,portcliente,restante = data.split(\n)
+lista.update(hostcliente)
+
+
 
 tcp.close()
 conn.close()
