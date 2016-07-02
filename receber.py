@@ -29,10 +29,10 @@ tcp.connect (conexao)
 nome = "roberto.jpg"
 nomesaida = ("./" + nome)
 saida = open (nomesaida,'wb')
-while tcp.recv(1024)!='':
-	data = tcp.recv(1024)
-	testezao = Arquivo(nome,1079915)
+data = tcp.recv(1024)
+while data != '':
 	saida.write(data)
+	data = tcp.recv(1024)
 # arquivorecebido = data.split('\n')
 # nome,tamanho=arquivorecebido[5].split(' ')
 
