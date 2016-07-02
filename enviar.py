@@ -1,32 +1,9 @@
 import socket
-# import threading
-
-# class ClientThread(threading.Thread):
-
-#     def __init__(self,ip,port):
-#         threading.Thread.__init__(self)
-# 		self.ip = ip
-# 		self.port = port
-#         print "[+] New thread started for "+ip+":"+str(port)
-
-
-#     def run(self):    
-#         print "Connection from : "+ip+":"+str(port)
-
-#         clientsock.send("\nWelcome to the server\n\n")
-
-#         data = "dummydata"
-
-#         while len(data):
-#             data = clientsock.recv(2048)
-#             print "Client sent : "+data
-#             clientsock.send("You sent me : "+data)
-
-#         print "Client disconnected..."
 
 tcp = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+tcp.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 host = 'localhost'
-port = 6000
+port = 4587
 try:
 	conexao = (host,port)
   	tcp.bind (conexao)
@@ -39,11 +16,12 @@ tcp.listen(1)
 conn, addr = tcp.accept()
 arquivo = open ('roberto-macho.jpg','rb')
 try:
+	conn.send("0")
 	pacote = arquivo.read(1024)
 	while pacote != '':
 		conn.send(pacote)
 		pacote = arquivo.read(1024)
 finally:
 	arquivo.close()
-	tcp.close()
 	conn.close()
+	tcp.close()
