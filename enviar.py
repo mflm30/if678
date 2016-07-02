@@ -39,10 +39,10 @@ tcp.listen(1)
 conn, addr = tcp.accept()
 arquivo = open ('roberto-macho.jpg','rb')
 try:
-	while arquivo.read(1024)!='':
-		pacote = arquivo.read(1024)
-	#print(pacote)
+	pacote = arquivo.read(1024)
+	while pacote != '':
 		conn.send(pacote)
+		pacote = arquivo.read(1024)
 finally:
 	arquivo.close()
 	tcp.close()
