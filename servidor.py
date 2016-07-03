@@ -2,10 +2,10 @@ import socket
 import threading
 import time
 
-class Cliente(object):
-	def __init__(self,identificador,tabela):
-		self.identificador = identificador
-		self.tabela = tabela
+# class Cliente(object):
+# 	def __init__(self,identificador,tabela):
+# 		self.identificador = identificador
+# 		self.tabela = tabela
 
 
 class Servidor (threading.Thread):
@@ -39,10 +39,14 @@ class Servidor (threading.Thread):
 			print("ESPERANDO")
 			self.conn,self.addr = Servidor.tcp.accept()
 			print("CONECTOU")
-			data = "1"
-			while data != "0":
-				data = self.conn.recv(1024)
-				print(data)
+			data = self.conn.recv(1024)
+			while data != '':
+				data += self.conn.recv(1024)
+			data = eval(data)
+			Servidor.tabela[data.keys[0]]['tem'] = data[data.keys[0]]['tem']
+			Servidor.tabela[data.keys[0]]['quer'] = data[data.keys[0]]['quer']
+
+
 			self.conn.close()
 
 
