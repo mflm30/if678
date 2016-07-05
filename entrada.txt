@@ -1,0 +1,6 @@
+localhost
+5578
+roberto-macho.jpg
+*
+arquivo_3 25
+arquivo_4 120
