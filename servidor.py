@@ -34,6 +34,11 @@ class Servidor (threading.Thread):
 			self.addr = None
 			self.threadAtiva = True
 
+		# deletar peer do dicionário
+		def delete_peers(lista_de_peers, hostname):
+		    lista_de_peers[:] = [d for d in lista_de_peers if d.get('Hostname') != hostname]
+		    return lista_de_peers
+		
 		def run(self):
 			
 			print("ESPERANDO")
