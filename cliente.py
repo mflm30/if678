@@ -44,7 +44,7 @@ class puta(object):
 	    #f.write(data_rec.decode('utf-8'))
 	    #f.close()
 	    s.close()
-
+	    
 	# Informações do peer
 	# retorna uma tudos os arquivos que tem localmente
 	def peer_informacoes():
